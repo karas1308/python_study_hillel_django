@@ -1,4 +1,6 @@
 # Create your views here.
+from django.shortcuts import render
 
-def index():
-    pass
+
+def index(request):
+    return render(request, template_name="animal/index.html")

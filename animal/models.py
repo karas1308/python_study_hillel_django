@@ -18,7 +18,7 @@ class Animal(models.Model):
 
 class AnimalMedia(models.Model):
     animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
-    media_link = models.CharField(max_length=255)  # edit
+    media_link = models.CharField(max_length=255)
     main = models.BooleanField()
 
 

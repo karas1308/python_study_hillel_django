@@ -12,3 +12,8 @@ class User(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class UserMedia(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    media_link = models.CharField(max_length=255)

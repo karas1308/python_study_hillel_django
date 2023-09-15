@@ -1,19 +1,22 @@
 # Create your views here.
-def index():
-    pass
+from django.shortcuts import render
 
 
-def user_login():
-    pass
+def index(request):
+    return render(request, template_name="user/index.html")
 
 
-def user_logout():
-    pass
+def user_login(request):
+    return render(request, template_name="user/index.html")
 
 
-def user_register():
-    pass
+def user_logout(request):
+    return render(request, template_name="user/index.html")
 
 
-def user_history():
-    pass
+def user_register(request):
+    return render(request, template_name="user/index.html")
+
+
+def user_history(request):
+    return render(request, template_name="user/index.html")
