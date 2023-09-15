@@ -1,9 +1,12 @@
 from django.db import models
 
+from user.models import User
+
 
 # Create your models here.
 
 class Animal(models.Model):
+    name = models.CharField(max_length=255)
     type = models.CharField(max_length=255)
     sex = models.ForeignKey('Sex', on_delete=models.CASCADE)
     age = models.PositiveIntegerField()
@@ -24,8 +27,7 @@ class Sex(models.Model):
 
 
 class Schedule(models.Model):
-    id = models.AutoField(primary_key=True)
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
     animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
-    # user = models.ForeignKey('user.customuser', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
