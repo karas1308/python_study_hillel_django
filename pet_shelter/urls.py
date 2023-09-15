@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-import animals
+import animal
 import blog
 import user
 
@@ -25,5 +25,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include("blog.urls")),
     path('', include("user.urls")),
-    path('animals/', include("animals.urls")),
+    path('animal/', include("animal.urls")),
 ]

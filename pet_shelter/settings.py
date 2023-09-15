@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'user.apps.UserConfig',
     'blog.apps.BlogConfig',
     'main.apps.MainConfig',
-    'animals.apps.AnimalsConfig',
+    'animal.apps.AnimalConfig',
 ]
 
 MIDDLEWARE = [

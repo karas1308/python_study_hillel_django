@@ -1,6 +1,6 @@
 from django.db import models
 
-from animals.models import Animals
+from animal.models import Animal
 from user.models import User
 
 
@@ -30,7 +30,7 @@ class Feedback(models.Model):
     media = models.CharField(max_length=255)
     user = models.CharField(max_length=255)
     date = models.ForeignKey(User, on_delete=models.CASCADE)
-    animal = models.ForeignKey(Animals, on_delete=models.CASCADE)
+    animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
 
     user_id = models.ForeignKey('user.customuser', on_delete=models.CASCADE)
     animal_id = models.ForeignKey('animal.animal', on_delete=models.CASCADE, null=True)
