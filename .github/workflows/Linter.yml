@@ -1,0 +1,20 @@
+name: Lint
+on:
+  push:
+  pull_request:
+jobs:
+  build:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Super Lint check
+        uses: github/super-linter@v5
+        env:
+          VALIDATE_ALL_CODEBASE: true
+          VALIDATE_PYTHON_BLACK: false
+          DEFAULT_BRANCH: main
