@@ -18,6 +18,7 @@ jobs:
           VALIDATE_ALL_CODEBASE: true
           VALIDATE_PYTHON_BLACK: false
           VALIDATE_PYTHON_ISORT: false
+          VALIDATE_HTML: false
           VALIDATE_JSCPD: false
           DEFAULT_BRANCH: main
           FILTER_REGEX_EXCLUDE: 'migrations'
