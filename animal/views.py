@@ -13,4 +13,11 @@ def index(request):
         animals = animals.filter(type=animal_type)
     if animal_breed:
         animals = animals.filter(breed=animal_breed)
-    return render(request, template_name="animal/index.html", context={"animals": animals})
+    types = []
+    breeds = []
+    for animal in animals:
+        if animal.breed not in breeds:
+            breeds.append(animal.breed)
+        if animal.type not in types:
+            types.append(animal.type)
+    return render(request, template_name="animal/index.html", context={"animals": animals, "types": types, "breeds": breeds})

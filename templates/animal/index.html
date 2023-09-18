@@ -9,15 +9,15 @@
     <label for="animal_type">Choose an animal type:</label>
         <select id="animal_type" name="animal_type">
             <option value="">All animals</option>
-            {% for animal in animals %}
-                <option value="{{ animal.type }}">{{ animal.type }}</option>
+            {% for type in types %}
+                <option value="{{ type }}">{{ type }}</option>
             {% endfor %}
         </select>
     <label for="animal_type">Choose an animal breed:</label>
         <select id="animal_breed" name="animal_breed">
             <option value="">All animals</option>
-            {% for animal in animals %}
-                <option value="{{ animal.breed }}">{{ animal.breed }}</option>
+            {% for breed in breeds %}
+                <option value="{{ breed }}">{{ breed }}</option>
             {% endfor %}
         </select>
         <input type="submit" value="Filter">
