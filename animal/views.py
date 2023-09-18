@@ -1,7 +1,5 @@
 # Create your views here.
-import operator
 
-from django.db.models import Q
 from django.shortcuts import render
 
 from animal.models import Animal
