@@ -5,6 +5,32 @@
     <title>Title</title>
 </head>
 <body>
-Animal
+<form method="get">
+    <label for="animal_type">Choose an animal type:</label>
+        <select id="animal_type" name="animal_type">
+            <option value="">All animals</option>
+            {% for animal in animals %}
+                <option value="{{ animal.type }}">{{ animal.type }}</option>
+            {% endfor %}
+        </select>
+    <label for="animal_type">Choose an animal breed:</label>
+        <select id="animal_breed" name="animal_breed">
+            <option value="">All animals</option>
+            {% for animal in animals %}
+                <option value="{{ animal.breed }}">{{ animal.breed }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Filter">
+</form>
+{% for animal in animals %}
+<p>{{animal.name}} Name</p>
+<p>{{animal.type}} Type</p>
+<p>{{animal.age}} Age</p>
+<p>{{animal.breed}} breed</p>
+<p>{{animal.description}} description</p>
+<p>{{animal.healthy}} healthy</p>
+<p>{{animal.sex.name}} sex</p>
+<p>############################################</p>
+{% endfor %}
 </body>
 </html>

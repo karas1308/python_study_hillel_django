@@ -1,7 +1,7 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 from animal.models import Animal
-from user.models import User
 
 
 # Create your models here.

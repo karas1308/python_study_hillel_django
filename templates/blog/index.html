@@ -5,6 +5,10 @@
     <title>Title</title>
 </head>
 <body>
-Blog
+    {% for post in posts %}
+        <p>{{ post.title }}</p>
+        <p>{{ post.text }}</p>
+        <p>{{ post.tag }}</p>
+    {% endfor %}
 </body>
 </html>

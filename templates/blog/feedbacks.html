@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>Here you can add your feedback</p>
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="title" placeholder="title">
+    <input type="text" name="text" placeholder="text">
+    <select id="animal_name" name="animal_name">
+            {% for animal in animals %}
+                <option value="{{ animal.id }}">{{ animal.name }}</option>
+            {% endfor %}
+        </select>
+    <input type="text" name="media" placeholder="media">
+    <input type="submit" value="Add feedback">
+
+</form>
+<p>
+<form method="get">
+    <label for="animal_id">Choose an animal:</label>
+        <select id="animal_id" name="animal_id">
+            <option value="">All animals</option>
+            {% for animal in animals %}
+                <option value="{{ animal.id }}">{{ animal.name }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Filter">
+</form>
+
+{% for feedback in all_feedbacks %}
+<p>{{feedback.title}} Title</p>
+<p>{{feedback.text}} Text</p>
+<p>{{feedback.media}} Media</p>
+<p>{{feedback.date}} Date</p>
+<p>{{feedback.user}} User</p>
+<p>{{feedback.animal.name}} Animal name</p>
+<p>{{feedback.animal.breed}} Animal breed</p>
+<p>############################################</p>
+{% endfor %}
+
+
+</body>
+</html>
