@@ -23,15 +23,18 @@ def feedbacks(request):
     if request.method == "POST":
         animal_id = request.POST.get("animal_name")
         animal = Animal.objects.get(id=animal_id)
-        user = User.objects.get(id=1)
-        new_feedback = Feedback(title=request.POST["title"],
-                                text=request.POST["text"],
-                                media=request.POST["media"],
-                                user=user,
-                                date=datetime.datetime.date(datetime.datetime.utcnow()),
-                                animal=animal)
-        new_feedback.save()
-        return redirect("/blog/feedbacks")
+        if request.user.is_authenticated:
+            user = User.objects.get(id=request.user.id)
+            new_feedback = Feedback(title=request.POST["title"],
+                                    text=request.POST["text"],
+                                    media=request.POST["media"],
+                                    user=user,
+                                    date=datetime.datetime.date(datetime.datetime.utcnow()),
+                                    animal=animal)
+            new_feedback.save()
+            return redirect("/blog/feedbacks")
+        else:
+            return redirect("/login")
 
     else:
         animals = Animal.objects.all()
