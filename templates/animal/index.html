@@ -23,7 +23,7 @@
         <input type="submit" value="Filter">
 </form>
 {% for animal in animals %}
-<p>{{animal.name}} Name</p>
+<h2> <a href="{% url 'animal_detail' animal.id %}"> {{animal.name}} </a></h2>
 <p>{{animal.type}} Type</p>
 <p>{{animal.age}} Age</p>
 <p>{{animal.breed}} breed</p>
