@@ -14,29 +14,30 @@ Hello {{ request.user}}
 {% endif %}
 
 <p>Here you can add your feedback</p>
-<form method="post">
-    {% csrf_token %}
-    <input type="text" name="title" placeholder="title">
-    <input type="text" name="text" placeholder="text">
-    <select id="animal_name" name="animal_name">
-            {% for animal in animals %}
-                <option value="{{ animal.id }}">{{ animal.name }}</option>
-            {% endfor %}
-        </select>
-    <input type="text" name="media" placeholder="media">
-    <input type="submit" value="Add feedback">
 
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    <!--               <input type="text" name="title" placeholder="title">-->
+    <!--    <input type="text" name="text" placeholder="text">-->
+    <!--    <select id="animal_name" name="animal_name">-->
+    <!--            {% for animal in animals %}-->
+    <!--                <option value="{{ animal.id }}">{{ animal.name }}</option>-->
+    <!--            {% endfor %}-->
+    <!--        </select>-->
+    <!--                <input type="file" name="upload" accept="image/*">-->
+    <p><input type="submit" value="Add feedback"/></p>
 </form>
 <p>
 <form method="get">
     <label for="animal_id">Choose an animal:</label>
-        <select id="animal_id" name="animal_id">
-            <option value="">All animals</option>
-            {% for animal in animals %}
-                <option value="{{ animal.id }}">{{ animal.name }}</option>
-            {% endfor %}
-        </select>
-        <input type="submit" value="Filter">
+    <select id="animal_id" name="animal_id">
+        <option value="">All animals</option>
+        {% for animal in animals %}
+        <option value="{{ animal.id }}">{{ animal.name }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Filter">
 </form>
 
 {% for feedback in all_feedbacks %}

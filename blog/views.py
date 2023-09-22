@@ -3,6 +3,7 @@ import datetime
 from django.shortcuts import redirect, render
 
 from animal.models import Animal
+from blog.forms import FeedbackForm
 from blog.models import Blog, Feedback
 from user.models import User
 
@@ -21,21 +22,14 @@ def blog_post(request, post_id=1):
 
 def feedbacks(request):
     if request.method == "POST":
-        animal_id = request.POST.get("animal_name")
-        animal = Animal.objects.get(id=animal_id)
         if request.user.is_authenticated:
-            user = User.objects.get(id=request.user.id)
-            new_feedback = Feedback(title=request.POST["title"],
-                                    text=request.POST["text"],
-                                    media=request.POST["media"],
-                                    user=user,
-                                    date=datetime.datetime.date(datetime.datetime.utcnow()),
-                                    animal=animal)
-            new_feedback.save()
+            form = FeedbackForm(request.POST)
+            feedback = form.save(commit=False)
+            feedback.user = request.user
+            feedback.save()
             return redirect("/blog/feedbacks")
         else:
             return redirect("/login")
-
     else:
         animals = Animal.objects.all()
         animal_id = request.GET.get("animal_id")
@@ -43,5 +37,6 @@ def feedbacks(request):
         if animal_id:
             all_feedbacks = all_feedbacks.filter(animal_id=animal_id)
         results = all_feedbacks.all()
+    form = FeedbackForm()
     return render(request, template_name="blog/feedbacks.html", context={"all_feedbacks": results,
-                                                                         "animals": animals})
+                                                                         "animals": animals, "form": form})
