@@ -6,24 +6,25 @@
 </head>
 <body>
 <form method="post">
-        {% csrf_token %}
-        <p>{{animal.name}} Name</p>
-<p>{{animal.type}} Type</p>
-<p>{{animal.age}} Age</p>
-<p>{{animal.breed}} breed</p>
-<p>{{animal.description}} description</p>
-<p>{{animal.healthy}} healthy</p>
-<p>{{animal.sex.name}} sex</p>
+    {% csrf_token %}
+    <p>{{animal.name}} Name</p>
+    <p>{{animal.type}} Type</p>
+    <p>{{animal.age}} Age</p>
+    <p>{{animal.breed}} breed</p>
+    <p>{{animal.description}} description</p>
+    <p>{{animal.healthy}} healthy</p>
+    <p>{{animal.sex.name}} sex</p>
 
-<select id="time_duration" name="time_duration">
-    {% for time in time_fr %}
+    <select id="time_duration" name="time_duration">
+        {% for time in time_fr %}
         <option value="{{ time }}">{{ time }}</option>
-    {% endfor %}
-</select>
-{% for free_time in free_times %}
+        {% endfor %}
+        <p><input type="submit" value="Get free time"/></p>
+    </select>
+    {% for free_time in free_times %}
     <p>{{free_time}} free_time</p>
-{% endfor%}
-    <p><input type="submit" value="Get free time"/></p>
+    {% endfor%}
+
 </form>
 </body>
 </html>
