@@ -1,56 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{% if request.user.is_authenticated %}
-Hello {{ request.user}}
-{% else %}
-<a href="/login">Sign in</a>
-<br>
-<a href="/register">Sign up</a>
-{% endif %}
+{% extends 'blog/base.html' %}
+
+{% block content %}
 
 <p>Here you can add your feedback</p>
 
-<form method="post" enctype="multipart/form-data">
+<form action="{% url 'feedbacks' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form }}
-    <!--               <input type="text" name="title" placeholder="title">-->
-    <!--    <input type="text" name="text" placeholder="text">-->
-    <!--    <select id="animal_name" name="animal_name">-->
-    <!--            {% for animal in animals %}-->
-    <!--                <option value="{{ animal.id }}">{{ animal.name }}</option>-->
-    <!--            {% endfor %}-->
-    <!--        </select>-->
-    <!--                <input type="file" name="upload" accept="image/*">-->
+    {{ form.as_p }}
     <p><input type="submit" value="Add feedback"/></p>
 </form>
-<p>
-<form method="get">
-    <label for="animal_id">Choose an animal:</label>
-    <select id="animal_id" name="animal_id">
-        <option value="">All animals</option>
-        {% for animal in animals %}
-        <option value="{{ animal.id }}">{{ animal.name }}</option>
-        {% endfor %}
-    </select>
-    <input type="submit" value="Filter">
-</form>
 
-{% for feedback in all_feedbacks %}
-<p>{{feedback.title}} Title</p>
-<p>{{feedback.text}} Text</p>
-<p>{{feedback.media}} Media</p>
-<p>{{feedback.date}} Date</p>
-<p>{{feedback.user}} User</p>
-<p>{{feedback.animal.name}} Animal name</p>
-<p>{{feedback.animal.breed}} Animal breed</p>
-<p>############################################</p>
-{% endfor %}
-
-
-</body>
-</html>
+{% endblock %}

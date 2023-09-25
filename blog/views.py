@@ -23,7 +23,7 @@ def blog_post(request, post_id=1):
 def feedbacks(request):
     if request.method == "POST":
         if request.user.is_authenticated:
-            form = FeedbackForm(request.POST)
+            form = FeedbackForm(request.POST, request.FILES)
             feedback = form.save(commit=False)
             feedback.user = request.user
             feedback.save()

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% if request.user.is_authenticated %}
+Hello {{ request.user}}
+{% else %}
+<a href="/login">Sign in</a>
+<br>
+<a href="/register">Sign up</a>
+{% endif %}
+{% block content %}
+{% endblock %}
+<p>############################################</p>
+{% for feedback in all_feedbacks %}
+<p>{{feedback.date}} Date</p>
+<p>{{feedback.title}} Title</p>
+<p>{{feedback.text}} Text</p>
+<p>{{feedback.user}} User</p>
+<p>{{feedback.animal.name}} Animal name</p>
+<p>{{feedback.animal.breed}} Animal breed</p>
+{% if feedback.media %}
+<p><a href="{{feedback.media.url}}"> <img class="img-article-left thumb" src="{{feedback.media.url}}" width="100"></a>
+</p>
+{% endif %}
+<p>############################################</p>
+{% endfor %}
+
+
+</body>
+</html>
