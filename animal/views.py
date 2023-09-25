@@ -3,7 +3,6 @@ import datetime
 
 from django.shortcuts import render
 
-from animal.forms import AnimalForm
 from animal.models import Animal
 from animal.time_scheduler import calculate_booking_time
 

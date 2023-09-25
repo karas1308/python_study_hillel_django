@@ -1,11 +1,8 @@
-import datetime
-
 from django.shortcuts import redirect, render
 
 from animal.models import Animal
 from blog.forms import FeedbackForm
 from blog.models import Blog, Feedback
-from user.models import User
 
 
 # Create your views here.
