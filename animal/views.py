@@ -38,7 +38,7 @@ def animal_detail(request, animal_id):
                      datetime.datetime(2023, 8, 1, 13, 0)),
                     (datetime.datetime(2023, 8, 1, 14, 30),
                      datetime.datetime(2023, 8, 1, 15, 0))]
-        free_time = calculate_booking_time(booked_time_frames=schedule, min_time_duration=time_duration)[1]
+        free_time = calculate_booking_time(booked_time_frames=schedule, min_time_duration=time_duration)
         return render(request, template_name="animal/animal_detail.html",
                       context={"animal": animal, "free_times": free_time, "time_fr": acceptable_time_for_booking})
     else:
