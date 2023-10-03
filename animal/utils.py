@@ -12,6 +12,8 @@ def __calculate_free_time(booked_time_frames, min_time_duration, min_time_slot=1
 
 
 class CalculateFreeTime:
+    def __call__(self, *args, **kwargs):
+        return self
 
     def calculate_free_time_1(self, booked_time_frames, min_time_duration, min_time_slot=15):
         return calculate_booking_time(booked_time_frames=booked_time_frames, min_time_duration=min_time_duration,

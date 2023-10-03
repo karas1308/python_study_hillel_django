@@ -11,6 +11,9 @@ def custom_mock(*args, **kwargs):
 
 
 class ScheduleMock:
+    def __call__(self, *args, **kwargs):
+        return [1]
+
     def calculate_free_time_1(self, *args, **kwargs):
         return [1]
 
@@ -93,16 +96,15 @@ class TestScheduleMock(unittest.TestCase):
 
     @patch('animal.utils.CalculateFreeTime', ScheduleMock)
     def test_schedule_mock_6(self):
-        expected_result = []
-        booked_time_frames = [(datetime.datetime(2023, 8, 1, 8, 0),
-                               datetime.datetime(2023, 8, 1, 18, 0))]
-        min_time_duration = 1
-        min_time_slot = 300
+        expected_result = [1]
+        booked_time_frames = []
+        min_time_duration =  ""
+        min_time_slot = ""
         actual_result = calc_proxy(booked_time_frames, min_time_duration, min_time_slot)
         print(f"expected_result:{expected_result} vs actual_result:{actual_result}")
         self.assertEqual(expected_result, actual_result)
 
-    @patch('animal.utils.calc_free_time', ScheduleMock)
+    @patch('animal.utils.calc_free_time', ScheduleMock())  # так робити не треба, бо це мок на мок
     def test_schedule_mock_7(self):
         expected_result = []
         booked_time_frames = [(datetime.datetime(2023, 8, 1, 8, 0),

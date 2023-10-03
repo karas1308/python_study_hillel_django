@@ -1,3 +1,4 @@
+from django.http import HttpResponse, HttpResponseNotFound, JsonResponse
 from django.shortcuts import redirect, render
 
 from animal.models import Animal
@@ -24,7 +25,12 @@ def feedbacks(request):
             feedback = form.save(commit=False)
             feedback.user = request.user
             feedback.save()
-            return redirect("/blog/feedbacks")
+            if feedback is not None:
+                response_text = "ok"
+                return HttpResponse(response_text)
+            else:
+                response_text = "fail"
+                return HttpResponse(response_text)
         else:
             return redirect("/login")
     else:
