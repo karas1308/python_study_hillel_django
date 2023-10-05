@@ -16,14 +16,24 @@
     <p>{{animal.sex.name}} sex</p>
 
     <select id="time_duration" name="time_duration">
+        <option value="{{ time_duration }}">{{ time_duration }}</option>
         {% for time in time_fr %}
         <option value="{{ time }}">{{ time }}</option>
         {% endfor %}
         <p><input type="submit" value="Get free time"/></p>
+        <input type="hidden" name="hidden_field" value="value_1">
+
     </select>
-    {% for free_time in free_times %}
-    <p>{{free_time}} free_time</p>
-    {% endfor%}
+</form>
+<form method="post">
+    {% csrf_token %}
+    <select id="start_time" name="start_time">
+        {% for free_time in free_times %}
+        <option value="{{ free_time }}">{{ free_time }}</option>
+        {% endfor %}
+        <p><input type="submit" value="Book free time"/></p>
+    <input type="hidden" name="hidden_field" value="book">
+    </select>
 
 </form>
 </body>
