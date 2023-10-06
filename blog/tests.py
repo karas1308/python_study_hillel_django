@@ -3,6 +3,7 @@ from django.test.client import Client
 from django.urls import reverse
 
 from animal.models import Animal
+from blog.models import Feedback
 
 
 # Create your tests here.
@@ -38,10 +39,13 @@ class TestFeedbacks(TestCase):
                                                            "animal": feedback["animal"]})
         status_code = response.status_code
         self.assertEqual(200, status_code)
+        self.assertIn("ok", str(response.content))
+        feedback = Feedback.objects.filter(title="title_fixture_test").all()
+        self.assertIsNotNone(feedback)
 
     def test_add_feedback_no_auth(self):
         animal = Animal.objects.get(id=1)
-        feedback = {"title": "title_fixture_test", "text": "text_fixture_test", "media": "media_fixture_test",
+        feedback = {"title": "title_fixture_test1", "text": "text_fixture_test", "media": "media_fixture_test",
                     "animal": animal.id}
         response = self.client.post(reverse("feedbacks"), {"title": feedback["title"],
                                                            "text": feedback["text"],
