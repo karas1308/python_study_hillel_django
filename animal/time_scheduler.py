@@ -14,11 +14,6 @@ def calculate_booking_time(booked_time_frames, min_time_duration: int, min_time_
     if min_time_duration > close_datetime - open_datetime:
         raise WorkingDayTimeException(f"min_time_duration longer than working day")
     booked_time_slots = []
-
-    # current_datetime = datetime.datetime.utcnow()
-    #
-    # a = datetime.datetime.strptime(request.POST.get("start_time"), "%H:%M") +  datetime.timedelta(hours=2)
-    # result_datetime = current_datetime.replace(hour=a.hour, minute=a.minute)
     all_time_slots = []
     while open_datetime <= close_datetime - min_time_slot:
         all_time_slots.append(open_datetime.strftime("%H:%M"))
@@ -43,7 +38,7 @@ def calculate_booking_time(booked_time_frames, min_time_duration: int, min_time_
             if (next_time - current_time) == min_time_slot:
                 min_time_slot += min_time
                 if i == len(available_times) - 1:
-                    free_periods.append((current_time, available_times[i] + min_time))
+                    free_periods.append((current_time, available_times[i]))
             else:
                 free_periods.append((current_time, available_times[i - 1]))
                 current_time = next_time

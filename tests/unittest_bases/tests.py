@@ -2,12 +2,13 @@ import datetime
 import unittest
 
 from animal.time_scheduler import WorkingDayTimeException, calculate_booking_time
+from utils.utils import read_test_data_from_json
 
 
 class TestSchedulePositive(unittest.TestCase):
 
     def test_schedule_whole_day_busy(self):
-        expected_result = []
+        expected_result = ['NO FREE TIME']
         booked_time_frames = [(datetime.datetime(2023, 8, 1, 8, 0),
                                datetime.datetime(2023, 8, 1, 18, 0))]
         min_time_duration = 1
@@ -16,10 +17,7 @@ class TestSchedulePositive(unittest.TestCase):
         self.assertEqual(expected_result, actual_result)
 
     def test_schedule_whole_day_free(self):
-        expected_result = ['08:00', '08:15', '08:30', '08:45', '09:00', '09:15', '09:30', '09:45', '10:00', '10:15',
-                           '10:30', '10:45', '11:00', '11:15', '11:30', '11:45', '12:00', '12:15', '12:30', '12:45',
-                           '13:00', '13:15', '13:30', '13:45', '14:00', '14:15', '14:30', '14:45', '15:00', '15:15',
-                           '15:30', '15:45', '16:00', '16:15', '16:30', '16:45', '17:00']
+        expected_result = read_test_data_from_json()["test_schedule_whole_day_free"]
         booked_time_frames = []
         min_time_duration = 1
         min_time_slot = 15
@@ -27,8 +25,7 @@ class TestSchedulePositive(unittest.TestCase):
         self.assertEqual(expected_result, actual_result)
 
     def test_schedule_booked_beginning(self):
-        expected_result = ['10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30',
-                           '15:00', '15:30', '16:00']
+        expected_result = read_test_data_from_json()["test_schedule_booked_beginning"]
         booked_time_frames = [(datetime.datetime(2024, 12, 31, 8, 0),
                                datetime.datetime(2024, 12, 31, 10, 0))]
         min_time_duration = 2
@@ -70,10 +67,7 @@ class TestSchedulePositive(unittest.TestCase):
         self.assertEqual(expected_result, actual_result)
 
     def test_schedule_booked_end(self):
-        expected_result = ['08:00', '08:15', '08:30', '08:45', '09:00', '09:15', '09:30', '09:45', '10:00', '10:15',
-                           '10:30', '10:45', '11:00', '11:15', '11:30', '11:45', '12:00', '12:15', '12:30', '12:45',
-                           '13:00', '13:15', '13:30', '13:45', '14:00', '14:15', '14:30', '14:45', '15:00', '15:15',
-                           '15:30', '15:45', '16:00']
+        expected_result = read_test_data_from_json()["test_schedule_booked_end"]
         booked_time_frames = [(datetime.datetime(2024, 12, 31, 17, 0),
                                datetime.datetime(2024, 12, 31, 18, 0))]
         min_time_duration = 1
