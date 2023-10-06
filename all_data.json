@@ -1006,5 +1006,25 @@
             "animal": 1,
             "user": 3
         }
+    },
+    {
+        "model": "animal.schedule",
+        "pk": 2,
+        "fields": {
+            "start_time": "2023-10-06T08:00:00Z",
+            "end_time": "2023-10-06T09:00:00Z",
+            "animal": 2,
+            "user": 3
+        }
+    },
+    {
+        "model": "animal.schedule",
+        "pk": 2,
+        "fields": {
+            "start_time": "2023-10-06T13:00:00Z",
+            "end_time": "2023-10-06T15:00:00Z",
+            "animal": 2,
+            "user": 1
+        }
     }
 ]
